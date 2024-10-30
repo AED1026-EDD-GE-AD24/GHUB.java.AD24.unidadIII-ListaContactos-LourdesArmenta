@@ -1,2 +1,7 @@
+./lista/Lista.java
+./lista/Nodo.java
+./lista/PosicionIlegalException.java
+./miPrincipal/Contacto.java
+./miPrincipal/ListaDeContactos.java
 ./miPrincipal/Principal.java
 ./miTest/AppTest.java
