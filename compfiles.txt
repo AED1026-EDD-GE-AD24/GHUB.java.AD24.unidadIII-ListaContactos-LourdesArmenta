@@ -3,5 +3,6 @@
 ./lista/PosicionIlegalException.java
 ./miPrincipal/Contacto.java
 ./miPrincipal/ListaDeContactos.java
-./miPrincipal/Principal.java
+./iu/Interfaz.java
 ./miTest/AppTest.java
+./negocios/Principal.java
