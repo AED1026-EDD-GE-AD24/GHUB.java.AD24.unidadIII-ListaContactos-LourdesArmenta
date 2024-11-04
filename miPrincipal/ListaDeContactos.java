@@ -86,7 +86,23 @@ public class ListaDeContactos {
      */
 
     public Lista<Contacto> mostrarTodosLosContactos(){
+        try {
+            for (int i=0;i<contactos.getTamanio();i++) {
+                System.out.print("Num: "+i+"-> ");
+                System.out.println(contactos.getValor(i).getNombres()+" "+
+                contactos.getValor(i).getApellidos()+ " "+
+                contactos.getValor(i).getDireccion()+ " "+
+                contactos.getValor(i).getCorreo()+" "+
+                contactos.getValor(i).getTelefono()+" "+
+                contactos.getValor(i).getCelular());
+            }
+     
+         }
+         catch(Exception e) {
+             e.printStackTrace();
+         }
         return contactos;
+        
 
     }
 
@@ -122,6 +138,10 @@ public class ListaDeContactos {
             }
             
 
+    }
+
+    public int tamanio(){
+        return contactos.getTamanio();
     }
 
     

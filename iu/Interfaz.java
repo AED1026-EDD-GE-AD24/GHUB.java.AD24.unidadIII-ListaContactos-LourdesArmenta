@@ -5,6 +5,7 @@ import lista.PosicionIlegalException;
 import miPrincipal.ListaDeContactos;
 import lista.Lista;
 import miPrincipal.Contacto;
+import miPrincipal.Email;
 
 public class Interfaz {
     static Scanner entrada = new  Scanner(System.in);
@@ -171,16 +172,112 @@ public class Interfaz {
         imprimirMenu();
 
     }
-    public static void mostrarContactos(){
+    public static void mostrarContactos() throws PosicionIlegalException{
+        System.out.println("Tamaño de lista de Contactos = "+ldc.tamanio());
+        ldc.mostrarTodosLosContactos();
+        
+        
+        imprimirMenu();
+
+
 
     }
-    public static void validarCambio(){
+    public static void validarCambio() throws PosicionIlegalException{
+        try {
+			String nombres,apellidos,direccion,
+			       correo,telefono,celular;
+			while (true) {
+				System.out.println("Modificar un contacto");
+				System.out.println("Por favor ingrese la información del contacto");
+				System.out.println("El nombre y apellido deben existir");
+				System.out.print("NOMBRES:");
+				nombres = entrada.nextLine();
+				System.out.print("APELLIDOS:");
+				apellidos = entrada.nextLine();
+				if (ldc.buscarContacto(nombres, apellidos) == null) 
+				{
+					System.out.println("Contacto No Existe");				
+				}
+				else
+				{
+					break;
+				}
+			}
+			System.out.print("DOMICILIO:");
+			direccion = entrada.nextLine();
+			try {
+				System.out.print("CORREO:");
+				correo = entrada.nextLine();
+				new Email(correo);
+			}
+			catch (Exception e) {
+				System.out.println("Correo no válido");
+				System.out.println("Si desea agregar nuevamente un contacto");
+				System.out.println("Seleccione la opción 1");
+				return;
+			}
+			
+			System.out.print("TELÉFONO:");
+			telefono = entrada.nextLine();
+			System.out.print("CELULAR:");
+			celular = entrada.nextLine();
+			if (ldc.modificarContactos(nombres, apellidos, direccion, correo, telefono, celular))
+			{
+				System.out.println("Modificación Exitosa");
+				System.out.println("Lista de Contactos");
+				ldc.mostrarTodosLosContactos();
+			}
+			else
+			{
+				System.out.println("No se puedo Modificar Contacto");
+				System.out.println("Si desea hacerlos, intente nuevamente ");
+				System.out.println("Seleccione la opcion 3");	
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		imprimirMenu();
+
 
     }
-    public static void validarBaja(){
+    public static void validarBaja() throws PosicionIlegalException{
+        try {
+			String nombres, apellidos; 
+			while (true) {
+				System.out.println("Eliminar un contacto");
+				System.out.println("Por favor ingrese la información del contacto");
+				System.out.println("El nombre y apellido deben existir");
+				//Contacto contacto = new Contacto();
+				System.out.print("NOMBRES:");
+				nombres = entrada.nextLine();
+				System.out.print("APELLIDOS:");
+				apellidos = entrada.nextLine();
 
+				if (ldc.eliminarContactos(nombres, apellidos)) 
+				{
+					System.out.println("Contacto Eliminada");
+					System.out.println("Lista de Contactos");
+					ldc.mostrarTodosLosContactos();
+					break;
+					
+				}
+				else
+				{
+					
+					System.out.println("No Existe un Contacto con ese nombre y apellido");
+					System.out.println("Si desea eleminar un contacto");
+					System.out.println("Ingrese un Contacto nombre y apellido válido");
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		imprimirMenu();
     }
-
+       
 
     
 }

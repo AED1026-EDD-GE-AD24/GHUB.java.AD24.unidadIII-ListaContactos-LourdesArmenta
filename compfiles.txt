@@ -1,6 +1,7 @@
 ./lista/Lista.java
 ./lista/Nodo.java
 ./lista/PosicionIlegalException.java
+./miPrincipal/Email.java
 ./miPrincipal/Contacto.java
 ./miPrincipal/ListaDeContactos.java
 ./iu/Interfaz.java
